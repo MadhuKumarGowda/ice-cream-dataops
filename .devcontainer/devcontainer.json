@@ -1,3 +1,15 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/python:3.11"
+  "name": "ice-cream-dataops",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+
+  "features": {},
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
 }
