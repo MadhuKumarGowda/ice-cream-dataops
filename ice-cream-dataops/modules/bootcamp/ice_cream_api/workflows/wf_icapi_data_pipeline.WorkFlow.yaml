@@ -1,2 +1,2 @@
 externalId: wf_icapi_data_pipeline
-description: workflow pipeline to read the raw data and transformations
+description: Workflow that builds the asset hierarchy, contextualizes time series, extracts Ice Cream API data points, and calculates OEE time series.
