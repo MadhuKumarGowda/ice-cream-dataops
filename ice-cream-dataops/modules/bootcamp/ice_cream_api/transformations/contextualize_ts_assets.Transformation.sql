@@ -1,12 +1,21 @@
-select distinct
+SELECT DISTINCT
   timeseries.externalId,
-  array(node_reference("icapi_dm_space", assets.externalId)) as assets,
+  array(
+    node_reference(assets.space, assets.externalId)
+  ) AS assets,
   timeseries.isStep,
   timeseries.type,
   timeseries.space
-from
-  cdf_data_models("cdf_cdm", "CogniteCore", "v1", "CogniteTimeSeries") as timeseries
-left join
-  cdf_data_models("cdf_cdm", "CogniteCore", "v1", "CogniteAsset") as assets
+FROM
+  cdf_data_models(
+    'cdf_cdm', 'CogniteCore', 'v1', 'CogniteTimeSeries'
+  ) AS timeseries
+INNER JOIN
+  cdf_data_models(
+    'cdf_cdm', 'CogniteCore', 'v1', 'CogniteAsset'
+  ) AS assets
 ON
-  split_part(timeseries.externalId, ":", 1) = assets.externalId
+  split_part(timeseries.externalId, ':', 1) = assets.externalId
+  AND assets.space = 'icapi_dm_space'
+WHERE
+  timeseries.space = 'icapi_dm_space';
